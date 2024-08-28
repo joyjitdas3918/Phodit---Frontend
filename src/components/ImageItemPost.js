@@ -108,7 +108,7 @@ useEffect(() => {
                     </div>}
                     <div className="d-flex flex-row-reverse" >
                     <div>   <i className="far fa-solid fa-share fa-lg mx-2 my-4" onClick={async()=>{
-                        navigator.clipboard.writeText(`http://localhost:3000/posts/${image._id}`);
+                        navigator.clipboard.writeText(`https://phodit.onrender.com/posts/${image._id}`);
                         props.showAlert("Link copied to clipboard","success");
                     }}></i> </div>
                     <div>   {(props.discover===false || localStorage.getItem('username')===image.username) && <i className="far fa-edit fa-lg mx-2 my-4" onClick={async ()=>{
