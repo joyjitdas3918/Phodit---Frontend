@@ -151,7 +151,7 @@ useEffect(() => {
         {image.children.length === 0 && 'No images to display'} 
       </div>
       {edits.map((edit) => (
- edit && <Imageitem key={edit._id} poststat={true} updateImage={updateImage} image={edit} discover={false} showAlert={props.showAlert} />
+ edit && <Imageitem key={edit._id} poststat={true} updateImage={updateImage} image={edit} discover={true} showAlert={props.showAlert} />
 ))}
     </div>
                     </div>
