@@ -131,12 +131,13 @@ useEffect(() => {
                     <div className="align-items-center">
                         <h5 style={{ whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis' }}><b>{image.title}</b></h5>
                         <h6 style={{ whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis' }}>{image.description}</h6>
-                        
-                        {image.parent!=="" && <Link to={`/redirectimage/posts/${image.parent}`}>Link to Parent</Link>}
- {<div>
-                    Posted by {image.username}
+{<div>
+                    Posted by <b>{image.username}</b>
                     
                     </div>}
+<br/>
+                        
+                        {image.parent!=="" && <Link to={`/redirectimage/posts/${image.parent}`}>Link to Parent</Link>}
                         
                     </div>
                 
