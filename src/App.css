@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+
+.nv-al{
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
