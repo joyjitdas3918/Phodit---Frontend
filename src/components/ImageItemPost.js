@@ -102,7 +102,7 @@ useEffect(() => {
         <div className="container">
             
                      
-                {props.discover===true && <div className="justify-content-end rounded-pill bg-dark translate-middle badge" style={{position: "absolute",opacity:"70%", backgroundColor: "black", color: "white", right:"-7px", top:"0px"}}>
+                {<div className="justify-content-end rounded-pill bg-dark translate-middle badge" style={{position: "absolute",opacity:"70%", backgroundColor: "black", color: "white", right:"-7px", top:"0px"}}>
                     {image.username}
                     
                     </div>}
@@ -111,7 +111,7 @@ useEffect(() => {
                         navigator.clipboard.writeText(`https://phodit.onrender.com/posts/${image._id}`);
                         props.showAlert("Link copied to clipboard","success");
                     }}></i> </div>
-                    <div>   {(props.discover===false || localStorage.getItem('username')===image.username) && <i className="far fa-edit fa-lg mx-2 my-4" onClick={async ()=>{
+                    <div>   {(localStorage.getItem('token')) && (props.discover===false || localStorage.getItem('username')===image.username) && <i className="far fa-edit fa-lg mx-2 my-4" onClick={async ()=>{
                             if(!localStorage.getItem('token')){
                                 navigate('/login')
                             }
@@ -119,7 +119,7 @@ useEffect(() => {
                             }}}></i>}
 </div>
 <div>
-                    {(props.discover===false || localStorage.getItem('username')===image.username) && <i className="far fa-trash-alt fa-lg mx-2 my-4" onClick={async ()=>{
+                    {(localStorage.getItem('token')) && (props.discover===false || localStorage.getItem('username')===image.username) && <i className="far fa-trash-alt fa-lg mx-2 my-4" onClick={async ()=>{
                                 if(!localStorage.getItem('token')){
                                     navigate('/login')
                                 }
