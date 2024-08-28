@@ -17,7 +17,7 @@ const Imageitem = (props) => {
                         navigator.clipboard.writeText(`https://phodit.onrender.com/posts/${image._id}`);
                         props.showAlert("Link copied to clipboard","success");
                     }}></i> </div>
-                    <div>   {(localStorage.getItem('username')===image.username) && <i className="far fa-edit fa-lg mx-2 my-4" onClick={async ()=>{
+                    <div>   {(localStorage.getItem('token')) && (localStorage.getItem('username')===image.username) && <i className="far fa-edit fa-lg mx-2 my-4" onClick={async ()=>{
                             if(!localStorage.getItem('token')){
                                 navigate('/login')
                             }
@@ -25,7 +25,7 @@ const Imageitem = (props) => {
                             }}}></i>}
 </div>
 <div>
-                    {(localStorage.getItem('username')===image.username) && <i className="far fa-trash-alt fa-lg mx-2 my-4" onClick={async ()=>{
+                    {(localStorage.getItem('token')) && (localStorage.getItem('username')===image.username) && <i className="far fa-trash-alt fa-lg mx-2 my-4" onClick={async ()=>{
                                 if(!localStorage.getItem('token')){
                                     navigate('/login')
                                 }
