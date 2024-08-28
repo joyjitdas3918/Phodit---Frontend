@@ -101,11 +101,7 @@ useEffect(() => {
         
         <div className="container">
             
-                     
-                {<div className="justify-content-end rounded-pill bg-dark translate-middle badge" style={{position: "absolute",opacity:"70%", backgroundColor: "black", color: "white", right:"-7px", top:"0px"}}>
-                    {image.username}
-                    
-                    </div>}
+                
                     <div className="d-flex flex-row-reverse" >
                     <div>   <i className="far fa-solid fa-share fa-lg mx-2 my-4" onClick={async()=>{
                         navigator.clipboard.writeText(`https://phodit.onrender.com/posts/${image._id}`);
@@ -137,6 +133,10 @@ useEffect(() => {
                         <h6 style={{ whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis' }}>{image.description}</h6>
                         
                         {image.parent!=="" && <Link to={`/redirectimage/posts/${image.parent}`}>Link to Parent</Link>}
+ {<div>
+                    Posted by {image.username}
+                    
+                    </div>}
                         
                     </div>
                 
