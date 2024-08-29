@@ -32,7 +32,7 @@ const About = () => {
       <div className="card-image-top">
       {loading && <Loader/>}
       <img
-        src="https://media.licdn.com/dms/image/D5603AQG8yQBR6T7ONA/profile-displayphoto-shrink_800_800/0/1722589597507?e=1727913600&v=beta&t=28kI_byt9D5LWQ9U727oH5mrYJxPoMwtn0M8Y3C-d58"
+        src="https://media.licdn.com/dms/image/v2/D5603AQFs-9vluenv_Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724916775191?e=1730332800&v=beta&t=NEJWlmkzAbQ_PxI9-zDUzqNzrezi1cCtP9W8sPYMfuw"
         alt="Joyjit Das"
         className={`card-img-top ${loading ? 'hidden' : ''}`}
         onLoad={handleImageLoad}
