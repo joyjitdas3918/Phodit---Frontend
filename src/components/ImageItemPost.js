@@ -104,7 +104,7 @@ useEffect(() => {
                 
                     <div className="d-flex flex-row-reverse" >
                     <div>   <i className="far fa-solid fa-share fa-lg mx-2 my-4" onClick={async()=>{
-                        navigator.clipboard.writeText(`https://phodit.onrender.com/posts/${image._id}`);
+                        navigator.clipboard.writeText(`https://phodit.vercel.app/posts/${image._id}`);
                         props.showAlert("Link copied to clipboard","success");
                     }}></i> </div>
                     <div>   {(localStorage.getItem('token')) && (props.discover===false || localStorage.getItem('username')===image.username) && <i className="far fa-edit fa-lg mx-2 my-4" onClick={async ()=>{
