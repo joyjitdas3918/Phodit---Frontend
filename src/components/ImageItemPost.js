@@ -137,7 +137,7 @@ useEffect(() => {
                     </div>}
 <br/>
                         
-                        {image.parent!=="" && <Link to={`/posts/${image.parent}`} ref={parentLinkRef}>Link to Parent</Link>}
+                        {image.parent!=="" && <Link to={`/posts/${image.parent}/`} ref={parentLinkRef}>Link to Parent</Link>}
                         
                     </div>
                 
