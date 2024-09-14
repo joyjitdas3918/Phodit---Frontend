@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef, useState} from 'react'
 import imageContext from '../images/ImageContext';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
 import AddImage from './AddImage';
 import Imageitem from './ImageItem';
 
@@ -48,7 +48,7 @@ const Imageitempost = (props)=> {
     const { image } = props;
     const [edits, setEdits] = useState([]);
     const [click,setClick]=useState(false);
-
+const {id}=useParams();
 useEffect(() => {
         const fetchEdits = async () => {
       const editPromises = Object.entries(image.children).map(async ([key, value]) => {
