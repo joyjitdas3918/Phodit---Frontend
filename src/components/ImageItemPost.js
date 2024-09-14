@@ -67,39 +67,6 @@ const {id}=useParams();
     fetchEdits();
         console.log(edits);
   }, []);
-useEffect(() => {
-    const fetchEdits = async () => {
-      if (image && image.id) { // Check if image data and id are available
-        const editPromises = Object.entries(image.children).map(async ([key, value]) => {
-          const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
-            method: "POST",
-          });
-          return await response.json();
-        });
-        const fetchedEdits = await Promise.all(editPromises);
-        setEdits(fetchedEdits);
-      }
-    };
-
-    fetchEdits();
-        console.log(edits);
-  }, [image]); // Update edits only when image changes
-
-  // Fetch the image data itself
-  useEffect(() => {
-    const fetchImage = async () => {
-      if (id) { // Check if id is available
-        const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${id}`, {
-          method: "POST",
-        });
-        const fetchedImageData = await response.json();
-        setIm(fetchedImageData);
-      }
-    };
-
-    fetchImage();
-          console.log(image);
-  }, [id]); // Update image only when id changes
 
     
 return (
@@ -204,17 +171,6 @@ function MyImage(props) {
   // Function to convert Base64 to binary and set image data
         const {id}=useParams();
   useEffect(() => {
-      const base64String = props.image;
-            const binaryString = window.atob(base64String.split(',')[1]);
-      const arrayBuffer = new Uint8Array(binaryString.length);
-      for (let i = 0; i < binaryString.length; i++) {
-          arrayBuffer[i] = binaryString.charCodeAt(i);  
-
-      }
-      const blob = new Blob([arrayBuffer], { type: 'image/png|jpg|jpeg' });
-      setImageData(URL.createObjectURL(blob));
-  }, []);
-        useEffect(() => {
       const base64String = props.image;
             const binaryString = window.atob(base64String.split(',')[1]);
       const arrayBuffer = new Uint8Array(binaryString.length);
