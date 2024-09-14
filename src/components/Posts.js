@@ -4,7 +4,7 @@ import Imageitempost from './ImageItemPost';
 function Posts(props) {
   const [post,setPost]=useState([]);
   const getPost = async () => {
-    const response = await fetch(`https://backend-6abz.onrender.com/api/images${window.location.pathname}`, {
+    const response = await fetch(`https://phodit-backend.vercel.app/api/images${window.location.pathname}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
