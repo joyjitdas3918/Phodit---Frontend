@@ -24,7 +24,7 @@ useEffect(() => {
                 props.showAlert("Password doesn't match confirmed password","danger");
             }
         else{
-        const response = await fetch("https://backend-6abz.onrender.com/api/auth/createuser", {
+        const response = await fetch("https://phodit-backend.vercel.app/api/auth/createuser", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
