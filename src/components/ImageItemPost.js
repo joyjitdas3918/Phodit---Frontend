@@ -210,7 +210,7 @@ const [image, setImageim] = useState(null);
   );
 };
 function MyImage(props) {
-  const [imageData, setImageData] = useState(null);
+  const [imageD, setImageD] = useState(null);
 
   // Function to convert Base64 to binary and set image data
   useEffect(() => {
@@ -222,12 +222,16 @@ function MyImage(props) {
 
       }
       const blob = new Blob([arrayBuffer], { type: 'image/png|jpg|jpeg' });
-      setImageData(URL.createObjectURL(blob));
+      setImageD(URL.createObjectURL(blob));
   }, []);
 
-  return (
-          imageData && <img src={imageData} alt="Image" style={{maxWidth:"80%"}}/>
-  );
+  <div>
+      {imageD ? (
+        <img src={imageD} alt="Image" style={{maxWidth:"80%"}}/>
+      ) : (
+        <p>Loading image...</p>
+      )}
+    </div>
 }
 
 export default Imageitempost
