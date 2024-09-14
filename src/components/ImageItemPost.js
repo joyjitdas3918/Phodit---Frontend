@@ -77,15 +77,12 @@ useEffect(() => {
       });
       const fetchedEdits = await Promise.all(editPromises);
       setEdits(fetchedEdits);
-    };
-        const fetchim=async()=>{
-        const resp = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${id}`, {
+              const resp = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${id}`, {
           method: "POST",
         });
          setIm(await resp.json());
-        };
-    await fetchEdits();
-        await fetchim();
+    };
+        fetchEdits();
         console.log(image);
   }, [id]);
     
