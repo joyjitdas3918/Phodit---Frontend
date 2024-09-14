@@ -46,28 +46,30 @@ const Imageitempost = (props)=> {
         setImage({...imageup, [e.target.name]: e.target.value})
     }
     const { deleteImage } = context;
+    const { image } = props;
     const [edits, setEdits] = useState([]);
     const [click,setClick]=useState(false);
-        const [image, setIm] = useState(props.image);
 const {id}=useParams();
-        useEffect(() => {
-    const fetchEdits = async () => {
-      if (image && image.id) { // Check if image data and id are available
-        const editPromises = Object.entries(image.children).map(async ([key, value]) => {
-          const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
-            method: "POST",
-          });
-          return await response.json();
-        });
-        const fetchedEdits = await Promise.all(editPromises);
-        setEdits(fetchedEdits);
-      }
-    };
+    useEffect(() => {
+        const fetchEdits = async () => {
+      const editPromises = Object.entries(image.children).map(async ([key, value]) => {
+        const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
+          method: "POST",
+        });
+        return await response.json();
+      });
 
-    fetchEdits();
-        console.log(edits);
-  }, []);
+      const fetchedEdits = await Promise.all(editPromises);
+      setEdits(fetchedEdits);
+    };
 
+    fetchEdits();
+    },[]);
+useEffect(() => {
+    console.log(id);
+    setClick(false);
+      
+  }, [id]);
     
 return (
         <><button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -169,7 +171,6 @@ function MyImage(props) {
   const [imageData, setImageData] = useState(null);
 
   // Function to convert Base64 to binary and set image data
-        const {id}=useParams();
   useEffect(() => {
       const base64String = props.image;
             const binaryString = window.atob(base64String.split(',')[1]);
