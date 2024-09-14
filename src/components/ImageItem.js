@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState, useRef} from 'react'
 import imageContext from '../images/ImageContext';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -53,28 +53,24 @@ const Imageitem = (props) => {
 }
 function MyImage(props) {
   const [imageData, setImageData] = useState(null);
-    const navigate= useNavigate();
-  // Function to convert Base64 to binary and set image data
-  useEffect(() => {
-      const base64String = props.image;
-            const binaryString = window.atob(base64String.split(',')[1]);
-      const arrayBuffer = new Uint8Array(binaryString.length);
-      for (let i = 0; i < binaryString.length; i++) {
-          arrayBuffer[i] = binaryString.charCodeAt(i);  
+  const imageRef = useRef(null);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const handleImageData = async () => {
+      // ... (your existing image loading logic)
+
+      if (imageData) {
+        // Force image reload by setting a new source
+        imageRef.current.src = `${imageData}?t=${Date.now()}`;
       }
-      const blob = new Blob([arrayBuffer], { type: 'image/png|jpg|jpeg' });
-      setImageData(URL.createObjectURL(blob));
-  }, []);
+    };
+
+    handleImageData();
+  }, [props.image, props.mimeType]);
 
   return (
-          if(props.st){
-      <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`)}}/>
-}
-else{
-      <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`); window.location.reload();}}/>
-
-}
+    <img ref={imageRef} src={imageData} alt="Image" onClick={() => navigate(`/posts/${props.id}`)} />
   );
 }
 
