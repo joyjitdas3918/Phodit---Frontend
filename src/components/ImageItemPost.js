@@ -64,6 +64,12 @@ const {id}=useParams();
 
     fetchEdits();
     },[]);
+        const fetchim=async()=>{
+        const resp = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${id}`, {
+          method: "POST",
+        });
+         upim(await resp.json());
+        };
 useEffect(() => {
     console.log(id);
     setClick(false);
@@ -79,12 +85,6 @@ useEffect(() => {
     };
 
     fetchEdits();
-        const fetchim=async()=>{
-        const resp = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${id}`, {
-          method: "POST",
-        });
-         upim(await resp.json());
-        };
         fetchim();
   }, [id]);
     
