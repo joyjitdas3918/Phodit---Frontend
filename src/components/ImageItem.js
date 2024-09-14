@@ -66,7 +66,7 @@ function MyImage(props) {
       const blob = new Blob([arrayBuffer], { type: 'image/png|jpg|jpeg' });
       setImageData(URL.createObjectURL(blob));
   }, []);
- if(props.pst){
+ if(!props.pst){
   return (
          
       <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`)}}/>
