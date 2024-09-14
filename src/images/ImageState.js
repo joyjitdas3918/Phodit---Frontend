@@ -13,7 +13,7 @@ const ImageState = (props) => {
             })
         }, 1000);
     }*/
-  const host = "https://backend-6abz.onrender.com";
+  const host = "https://phodit-backend.vercel.app";
 
   const imagesInitial = [];
   const imagesInitialAllUsers=[];
