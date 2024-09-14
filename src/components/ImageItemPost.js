@@ -185,6 +185,7 @@ function MyImage(props) {
   const [imageData, setImageData] = useState(null);
 
   // Function to convert Base64 to binary and set image data
+        const {id}=useParams();
   useEffect(() => {
       const base64String = props.image;
             const binaryString = window.atob(base64String.split(',')[1]);
@@ -195,7 +196,7 @@ function MyImage(props) {
       }
       const blob = new Blob([arrayBuffer], { type: 'image/png|jpg|jpeg' });
       setImageData(URL.createObjectURL(blob));
-  }, []);
+  }, [id]);
 
   return (
           <img src={imageData} alt="Image" style={{maxWidth:"80%"}}/>
