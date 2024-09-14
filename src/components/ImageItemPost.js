@@ -226,7 +226,7 @@ function MyImage(props) {
   }, []);
 
   return (
-          <img src={imageData} alt="Image" style={{maxWidth:"80%"}}/>
+          imageData && <img src={imageData} alt="Image" style={{maxWidth:"80%"}}/>
   );
 }
 
