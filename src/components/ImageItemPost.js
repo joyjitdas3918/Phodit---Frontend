@@ -63,6 +63,7 @@ useEffect(() => {
     };
 
     fetchEdits();
+    console.log(id);
     setClick(false);
       
   }, [id]);
