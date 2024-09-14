@@ -57,7 +57,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/posts/:id", 
+    exact path: "/posts/:id", 
     element: (
       <>
       <Navbar/>
