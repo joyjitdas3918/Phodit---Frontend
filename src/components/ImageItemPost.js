@@ -86,6 +86,7 @@ useEffect(() => {
 
     fetchEdits();
         fetchim();
+        console.log(image);
   }, [id]);
     
 return (
