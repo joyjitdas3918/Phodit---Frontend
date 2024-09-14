@@ -10,7 +10,6 @@ const Imageitempost = (props)=> {
     
   const location = useLocation();
   const context = useContext(imageContext);
-  const { images, getImages, editImage } = context;
   const parentLinkRef = useRef(null);
   let navigate = useNavigate();
   const ref = useRef(null)
@@ -65,7 +64,7 @@ const {id}=useParams();
     fetchEdits();
     },[]);
 useEffect(() => {
-       
+       const { images, getImages, editImage } = context;
     console.log(id);
     setClick(false);
       
