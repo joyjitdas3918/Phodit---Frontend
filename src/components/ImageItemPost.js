@@ -145,10 +145,7 @@ return (
                     </div>}
 <br/>
                         
-                        {image.parent!=="" && <Link to={`/posts/${image.parent}/`} onClick={()=>{
-        setClick(true);
-        window.location.reload();
-}}>Link to Parent</Link>}
+                        {image.parent!=="" && <a href={`/posts/${image.parent}/`}>Link to Parent</a>}
                         
                     </div>
                 
