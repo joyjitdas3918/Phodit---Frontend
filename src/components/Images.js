@@ -58,7 +58,7 @@ const Images = (props) => {
     if (loading || !hasMore) return; // Prevent unnecessary fetches
     try {
       setLoading(true);
-      const response = await fetch(`https://backend-6abz.onrender.com/api/images/fetchallimages/${pg}/1`, {
+      const response = await fetch(`https://phodit-backend.vercel.app/api/images/fetchallimages/${pg}/1`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
