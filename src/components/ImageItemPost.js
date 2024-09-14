@@ -48,7 +48,7 @@ const Imageitempost = (props)=> {
     const { deleteImage } = context;
     const [edits, setEdits] = useState([]);
     const [click,setClick]=useState(false);
-        const [image,upim]=useState(null);
+        let {image}=props;
 const {id}=useParams();
     useEffect(() => {
         const fetchEdits = async () => {
@@ -68,7 +68,7 @@ const {id}=useParams();
         const resp = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${id}`, {
           method: "POST",
         });
-         upim(await resp.json());
+         image=await resp.json();
         };
 useEffect(() => {
     console.log(id);
