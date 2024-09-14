@@ -14,7 +14,7 @@ const Imageitempost = (props) => {
   const ref = useRef(null);
   const refClose = useRef(null);
   const [imageup, setImage] = useState({ id: "", etitle: "", edescription: "", etag: "" });
-const [image, setImage] = useState(null);
+const [image, setImageim] = useState(null);
   const updateImage = async (currentImage) => {
     ref.current.click();
     setImage({
@@ -50,7 +50,7 @@ const [image, setImage] = useState(null);
   useEffect(() => {
     const fetchImageDetails = async () => {
       const imageData = await (await fetch(`/api/images/posts/${id}`)).json();
-      setImage(imageData);
+      setImageim(imageData);
       setEdits([]); // Reset edits on id change
 
       const editPromises = Object.entries(image.children).map(async ([key, value]) => {
