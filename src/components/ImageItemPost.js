@@ -213,7 +213,18 @@ function MyImage(props) {
       }
       const blob = new Blob([arrayBuffer], { type: 'image/png|jpg|jpeg' });
       setImageData(URL.createObjectURL(blob));
-  }, [id]);
+  }, []);
+        useEffect(() => {
+      const base64String = props.image;
+            const binaryString = window.atob(base64String.split(',')[1]);
+      const arrayBuffer = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+          arrayBuffer[i] = binaryString.charCodeAt(i);  
+
+      }
+      const blob = new Blob([arrayBuffer], { type: 'image/png|jpg|jpeg' });
+      setImageData(URL.createObjectURL(blob));
+  }, []);
 
   return (
           <img src={imageData} alt="Image" style={{maxWidth:"80%"}}/>
