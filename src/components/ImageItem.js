@@ -68,7 +68,7 @@ function MyImage(props) {
   }, []);
 
   return (
-          if(pst){
+          if(props.st){
       <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`)}}/>
 }
 else{
