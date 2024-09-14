@@ -15,7 +15,7 @@ useEffect(() => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("https://backend-6abz.onrender.com/api/auth/login", {
+        const response = await fetch("https://phodit-backend.vercel.app/api/auth/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
