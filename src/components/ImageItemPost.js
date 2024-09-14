@@ -46,9 +46,9 @@ const Imageitempost = (props)=> {
         setImage({...imageup, [e.target.name]: e.target.value})
     }
     const { deleteImage } = context;
-    const { image } = props;
     const [edits, setEdits] = useState([]);
     const [click,setClick]=useState(false);
+        const [image,upim]=useState(null);
 const {id}=useParams();
     useEffect(() => {
         const fetchEdits = async () => {
@@ -58,7 +58,6 @@ const {id}=useParams();
         });
         return await response.json();
       });
-
       const fetchedEdits = await Promise.all(editPromises);
       setEdits(fetchedEdits);
     };
@@ -68,7 +67,25 @@ const {id}=useParams();
 useEffect(() => {
     console.log(id);
     setClick(false);
-      
+      const fetchEdits = async () => {
+      const editPromises = Object.entries(image.children).map(async ([key, value]) => {
+        const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
+          method: "POST",
+        });
+        return await response.json();
+      });
+      const fetchedEdits = await Promise.all(editPromises);
+      setEdits(fetchedEdits);
+    };
+
+    fetchEdits();
+        const fetchim=async()=>{
+        const resp = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${id}`, {
+          method: "POST",
+        });
+         setim(await response.json());
+        };
+        fetchim();
   }, [id]);
     
 return (
