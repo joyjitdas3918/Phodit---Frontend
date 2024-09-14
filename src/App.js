@@ -60,6 +60,7 @@ const router = createBrowserRouter([
   {
     exact: true,
     path: "/posts/:id", 
+    key={id},
     element: (
       <>
       <Navbar/>
