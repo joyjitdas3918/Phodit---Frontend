@@ -50,21 +50,6 @@ const Imageitempost = (props)=> {
     const [click,setClick]=useState(false);
         const [image, setIm] = useState(props.image);
 const {id}=useParams();
-    useEffect(() => {
-        const fetchEdits = async () => {
-      const editPromises = Object.entries(image.children).map(async ([key, value]) => {
-        const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
-          method: "POST",
-        });
-        return await response.json();
-      });
-      const fetchedEdits = await Promise.all(editPromises);
-      setEdits(fetchedEdits);
-    };
-
-    fetchEdits();
-    },[]);
-        
 useEffect(() => {
     console.log(id);
     setClick(false);
