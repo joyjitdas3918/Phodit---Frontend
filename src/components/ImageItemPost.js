@@ -83,7 +83,7 @@ useEffect(() => {
         const resp = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${id}`, {
           method: "POST",
         });
-         setim(await response.json());
+         upim(await resp.json());
         };
         fetchim();
   }, [id]);
