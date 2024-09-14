@@ -141,7 +141,7 @@ useEffect(() => {
                     </div>}
 <br/>
                         
-                        {image.parent!=="" && <Link to={`/posts/${image.parent}/`} onClick={()=>{setClick(true);}} replace={true}>Link to Parent</Link>}
+                        {image.parent!=="" && <Link to={`/posts/${image.parent}/`} onClick={()=>{setClick(true);}}>Link to Parent</Link>}
                         
                     </div>
                 
