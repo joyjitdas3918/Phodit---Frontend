@@ -50,7 +50,7 @@ const Imageitempost = (props)=> {
 useEffect(() => {
   const fetchEdits = async () => {
     const editPromises = Object.entries(image.children).map(async ([key, value]) => {
-      const response = await fetch(`https://backend-6abz.onrender.com/api/images/posts/${value}`, {
+      const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
         method: "POST",
       });
       return await response.json();
@@ -104,7 +104,7 @@ useEffect(() => {
                 
                     <div className="d-flex flex-row-reverse" >
                     <div>   <i className="far fa-solid fa-share fa-lg mx-2 my-4" onClick={async()=>{
-                        navigator.clipboard.writeText(`https://phodit.onrender.com/posts/${image._id}`);
+                        navigator.clipboard.writeText(`https://phodit-backend.vercel.app/posts/${image._id}`);
                         props.showAlert("Link copied to clipboard","success");
                     }}></i> </div>
                     <div>   {(localStorage.getItem('token')) && (props.discover===false || localStorage.getItem('username')===image.username) && <i className="far fa-edit fa-lg mx-2 my-4" onClick={async ()=>{
