@@ -69,7 +69,7 @@ useEffect(() => {
     };
         fetchEdits();
         console.log(image);
-  }, [id]);
+  }, [id,image,edits]);
     
 return (
         <><button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
