@@ -16,6 +16,23 @@ import RedirectImage from "./components/RedirectImage";
 
   
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const newLocation = location.pathname + location.search;
+      if (newLocation !== location.pathname + location.search) {
+        navigate(newLocation, { replace: true });
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [location]);
   const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
     setAlert({
