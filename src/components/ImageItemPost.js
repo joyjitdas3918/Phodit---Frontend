@@ -147,9 +147,7 @@ return (
                         
                         {image.parent!=="" && <Link to={`/posts/${image.parent}/`} onClick={()=>{
         setClick(true);
-        const currentUrl = window.location.href;
-    const newUrl = `${currentUrl}?reload=${Date.now()}`;
-    navigate(newUrl);
+        window.location.reload();
 }}>Link to Parent</Link>}
                         
                     </div>
