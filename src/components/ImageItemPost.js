@@ -48,20 +48,20 @@ const Imageitempost = (props)=> {
     const [edits, setEdits] = useState([]);
 
 useEffect(() => {
-  const fetchEdits = async () => {
-    const editPromises = Object.entries(image.children).map(async ([key, value]) => {
-      const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
-        method: "POST",
+    const fetchEdits = async () => {
+      const editPromises = Object.entries(image.children).map(async ([key, value]) => {
+        const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
+          method: "POST",
+        });
+        return await response.json();
       });
-      return await response.json();
-    });
 
-    const fetchedEdits = await Promise.all(editPromises);
-    setEdits(fetchedEdits);
-  };
+      const fetchedEdits = await Promise.all(editPromises);
+      setEdits(fetchedEdits);
+    };
 
-  fetchEdits();
-}, [image.children]);
+    fetchEdits();
+  }, [image]);
     
     return (
         <><button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
