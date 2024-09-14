@@ -68,7 +68,7 @@ function MyImage(props) {
   }, []);
 
   return (
-          <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`); navigate(`/redirectimage${window.location.pathname}`) }}/>
+          <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`)}}/>
   );
 }
 
