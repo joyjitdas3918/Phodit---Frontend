@@ -46,6 +46,7 @@ const Imageitempost = (props)=> {
     const { deleteImage } = context;
     const { image } = props;
     const [edits, setEdits] = useState([]);
+    const [click,setClick]=useState(false);
 
 useEffect(() => {
     const fetchEdits = async () => {
@@ -61,7 +62,8 @@ useEffect(() => {
     };
 
     fetchEdits();
-  }, []);
+    setClick(false);
+  }, [click]);
     
     return (
         <><button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -137,7 +139,7 @@ useEffect(() => {
                     </div>}
 <br/>
                         
-                        {image.parent!=="" && <Link to={`/posts/${image.parent}/`} ref={parentLinkRef}>Link to Parent</Link>}
+                        {image.parent!=="" && <Link to={`/posts/${image.parent}/`} onClick={()=>{setClick(true);}}>Link to Parent</Link>}
                         
                     </div>
                 
