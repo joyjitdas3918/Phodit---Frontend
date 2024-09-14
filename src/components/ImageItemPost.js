@@ -51,18 +51,7 @@ const Imageitempost = (props)=> {
 
 useEffect(() => {
     const handlePopState = () => {
-      const newLocation = location.pathname + location.search;
-      if (newLocation !== location.pathname + location.search) {
-        navigate(newLocation, { replace: true });
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-    };
-    const fetchEdits = async () => {
+        const fetchEdits = async () => {
       const editPromises = Object.entries(image.children).map(async ([key, value]) => {
         const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
           method: "POST",
@@ -76,7 +65,8 @@ useEffect(() => {
 
     fetchEdits();
     setClick(false);
-  }, [location]);
+      
+  }, []);
     
     return (
         <><button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -152,7 +142,7 @@ useEffect(() => {
                     </div>}
 <br/>
                         
-                        {image.parent!=="" && <Link to={`/posts/${image.parent}/`} onClick={()=>{setClick(true);}}>Link to Parent</Link>}
+                        {image.parent!=="" && <Link to={`/posts/${image.parent}/`} onClick={()=>{setClick(true);}} replace={true}>Link to Parent</Link>}
                         
                     </div>
                 
