@@ -13,28 +13,10 @@ import Discover from "./components/Discover";
 import Posts from "./components/Posts";
 import Redirect from "./components/RedirectImage";
 import RedirectImage from "./components/RedirectImage";
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
   
 function App() {
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const handlePopState = () => {
-      const newLocation = location.pathname + location.search;
-      if (newLocation !== location.pathname + location.search) {
-        navigate(newLocation, { replace: true });
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-    };
-  }, [location]);
   const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
     setAlert({
