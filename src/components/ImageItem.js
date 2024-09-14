@@ -52,26 +52,31 @@ const Imageitem = (props) => {
     )
 }
 function MyImage(props) {
-  const [imageData, setImageData] = useState(null);
-  const imageRef = useRef(null);
-  const navigate = useNavigate();
+  const [imageData, setImageData] = useState(null);
+    const navigate= useNavigate();
+  // Function to convert Base64 to binary and set image data
+  useEffect(() => {
+      const base64String = props.image;
+            const binaryString = window.atob(base64String.split(',')[1]);
+      const arrayBuffer = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+          arrayBuffer[i] = binaryString.charCodeAt(i);  
 
-  useEffect(() => {
-    const handleImageData = async () => {
-      // ... (your existing image loading logic)
-
-      if (imageData) {
-        // Force image reload by setting a new source
-        imageRef.current.src = `${imageData}?t=${Date.now()}`;
-      }
-    };
-
-    handleImageData();
-  }, [props.image, props.mimeType]);
-
-  return (
-    <img ref={imageRef} src={imageData} alt="Image" onClick={() => navigate(`/posts/${props.id}`)} />
-  );
+      }
+      const blob = new Blob([arrayBuffer], { type: 'image/png|jpg|jpeg' });
+      setImageData(URL.createObjectURL(blob));
+  }, []);
+ if(props.pst){
+  return (
+         
+      <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`)}}/>
+    );
 }
+else{
+    return(
+      <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`); window.location.reload();}}/>
+);
+}
+} 
 
 export default Imageitem
