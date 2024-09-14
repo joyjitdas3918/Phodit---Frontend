@@ -8,51 +8,56 @@ import Imageitem from './ImageItem';
 const Imageitempost = (props)=> {
     
     
-  const location = useLocation();
+const location = useLocation();
   const context = useContext(imageContext);
+
+  const { images, getImages, editImage, deleteImage } = context;
   const parentLinkRef = useRef(null);
   let navigate = useNavigate();
-  const ref = useRef(null)
-    const refClose = useRef(null)
-    const [imageup, setImage] = useState({id: "", etitle: "", edescription: "", etag: ""})
-    
-    const updateImage = (currentImage) => {
-        ref.current.click();
-        setImage({id: currentImage._id, etitle: currentImage.title, edescription: currentImage.description, etag:currentImage.tag})
-        
-        
+  const ref = useRef(null);
+  const refClose = useRef(null);
+  const [imageup, setImage] = useState({ id: "", etitle: "", edescription: "", etag: "" });
 
+  const updateImage = async (currentImage) => {
+    ref.current.click();
+    setImage({
+      id: currentImage._id,
+      etitle: currentImage.title,
+      edescription: currentImage.description,
+      etag: currentImage.tag,
+    });
+  };
+
+  const handleClick = async (e) => {
+    if (!localStorage.getItem('token')) {
+      refClose.current.click();
+      navigate('/login');
+      return;
     }
 
-    const handleClick = async (e)=>{ 
-        if(!localStorage.getItem('token')){
-            
-        refClose.current.click();
-            navigate('/login')
-        }
-        else{
-            await editImage(imageup.id, imageup.etitle, imageup.edescription, imageup.etag)
-        refClose.current.click();
-        props.showAlert("Your image has been updated successfully","success");
-        //<Link reloadDocument to='/discover'></Link>
-        navigate(`/redirectimage${window.location.pathname}`)
-        //window.location.reload();
-        }
-    }
+    await editImage(imageup.id, imageup.etitle, imageup.edescription, imageup.etag);
+    refClose.current.click();
+    props.showAlert("Your image has been updated successfully", "success");
+    navigate(`/redirectimage${window.location.pathname}`); // Navigate to updated image
+  };
 
-    const onChange = (e)=>{
-        setImage({...imageup, [e.target.name]: e.target.value})
-    }
-    const { deleteImage } = context;
-    const { image } = props;
-    const [edits, setEdits] = useState([]);
-    const [click,setClick]=useState(false);
-const {id}=useParams();
-    useEffect(() => {
-        const fetchEdits = async () => {
+  const onChange = (e) => {
+    setImage({ ...imageup, [e.target.name]: e.target.value });
+  };
+
+  const { id } = useParams();
+  const [edits, setEdits] = useState([]);
+  const [click, setClick] = useState(false);
+
+  // Combined useEffect to fetch image details and edits based on id change
+  useEffect(() => {
+    const fetchImageDetails = async () => {
+      const image = await (await fetch(`/api/images/posts/${id}`)).json();
+      setEdits([]); // Reset edits on id change
+
       const editPromises = Object.entries(image.children).map(async ([key, value]) => {
-        const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
-          method: "POST",
+        const response = await fetch(`/api/images/posts/${value}`, {
+          method: 'POST',
         });
         return await response.json();
       });
@@ -61,14 +66,9 @@ const {id}=useParams();
       setEdits(fetchedEdits);
     };
 
-    fetchEdits();
-    },[]);
-useEffect(() => {
-       const { images, getImages, editImage } = context;
-    console.log(id);
-    setClick(false);
-      
-  }, [id]);
+    fetchImageDetails();
+  }, [id]); // Dependency array includes `id`
+
     
     return (
         <><button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
