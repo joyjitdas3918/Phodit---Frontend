@@ -65,6 +65,7 @@ useEffect(() => {
     };
 
     fetchEdits();
+        console.log(edits);
   }, [image]); // Update edits only when image changes
 
   // Fetch the image data itself
@@ -80,6 +81,7 @@ useEffect(() => {
     };
 
     fetchImage();
+          console.log(image);
   }, [id]); // Update image only when id changes
 
     
