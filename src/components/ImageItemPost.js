@@ -48,11 +48,6 @@ const Imageitempost = (props)=> {
     const [edits, setEdits] = useState([]);
 
 useEffect(() => {
-    parentLinkRef.current.addEventListener('click', handleClick);
-
-    return () => {
-      parentLinkRef.current.removeEventListener('click', handleClick);
-    };
     const fetchEdits = async () => {
       const editPromises = Object.entries(image.children).map(async ([key, value]) => {
         const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
