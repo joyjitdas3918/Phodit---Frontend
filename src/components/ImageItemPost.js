@@ -8,14 +8,54 @@ import Imageitem from './ImageItem';
 const Imageitempost = (props)=> {
     
     
-  const context = useContext(imageContext);
+  // const context = useContext(imageContext);
+  // const { images, getImages, editImage } = context;
+  
+  // let navigate = useNavigate();
+  // const ref = useRef(null)
+  //   const refClose = useRef(null)
+  //   const [imageup, setImage] = useState({id: "", etitle: "", edescription: "", etag: ""})
+    
+  //   const updateImage = (currentImage) => {
+  //       ref.current.click();
+  //       setImage({id: currentImage._id, etitle: currentImage.title, edescription: currentImage.description, etag:currentImage.tag})
+        
+        
+
+  //   }
+
+  //   const handleClick = async (e)=>{ 
+  //       if(!localStorage.getItem('token')){
+            
+  //       refClose.current.click();
+  //           navigate('/login')
+  //       }
+  //       else{
+  //           await editImage(imageup.id, imageup.etitle, imageup.edescription, imageup.etag)
+  //       refClose.current.click();
+  //       props.showAlert("Your image has been updated successfully","success");
+  //       //<Link reloadDocument to='/discover'></Link>
+  //       navigate(`/redirectimage${window.location.pathname}`)
+  //       //window.location.reload();
+  //       }
+  //   }
+
+  //   const onChange = (e)=>{
+  //       setImage({...imageup, [e.target.name]: e.target.value})
+  //   }
+  //   const { deleteImage } = context;
+  //   const { image } = props;
+  //   const [edits, setEdits] = useState([]);
+
+useEffect(() => {
+    const context = useContext(imageContext);
   const { images, getImages, editImage } = context;
   
   let navigate = useNavigate();
   const ref = useRef(null)
     const refClose = useRef(null)
     const [imageup, setImage] = useState({id: "", etitle: "", edescription: "", etag: ""})
-
+    
     const updateImage = (currentImage) => {
         ref.current.click();
         setImage({id: currentImage._id, etitle: currentImage.title, edescription: currentImage.description, etag:currentImage.tag})
@@ -46,8 +86,6 @@ const Imageitempost = (props)=> {
     const { deleteImage } = context;
     const { image } = props;
     const [edits, setEdits] = useState([]);
-
-useEffect(() => {
     const fetchEdits = async () => {
       const editPromises = Object.entries(image.children).map(async ([key, value]) => {
         const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
