@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef, useState} from 'react'
 import imageContext from '../images/ImageContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AddImage from './AddImage';
 import Imageitem from './ImageItem';
 
@@ -8,6 +8,7 @@ import Imageitem from './ImageItem';
 const Imageitempost = (props)=> {
     
     
+  const location = useLocation();
   const context = useContext(imageContext);
   const { images, getImages, editImage } = context;
   const parentLinkRef = useRef(null);
@@ -49,6 +50,18 @@ const Imageitempost = (props)=> {
     const [click,setClick]=useState(false);
 
 useEffect(() => {
+    const handlePopState = () => {
+      const newLocation = location.pathname + location.search;
+      if (newLocation !== location.pathname + location.search) {
+        navigate(newLocation, { replace: true });
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
     const fetchEdits = async () => {
       const editPromises = Object.entries(image.children).map(async ([key, value]) => {
         const response = await fetch(`https://phodit-backend.vercel.app/api/images/posts/${value}`, {
@@ -63,7 +76,7 @@ useEffect(() => {
 
     fetchEdits();
     setClick(false);
-  }, [click]);
+  }, [location]);
     
     return (
         <><button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
