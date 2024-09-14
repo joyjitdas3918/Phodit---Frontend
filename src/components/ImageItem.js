@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const Imageitem = (props) => {
     const context = useContext(imageContext);
     const { deleteImage } = context;
-    const { image, updateImage } = props;
+    const { image, updateImage, poststat } = props;
     
     let navigate = useNavigate();
     return (
@@ -39,7 +39,7 @@ const Imageitem = (props) => {
                 {props.discover===true && <div className="justify-content-end rounded-pill bg-dark translate-middle badge" style={{position: "absolute",opacity:"70%", backgroundColor: "black", color: "white", right:"-7px", top:"0px"}}>
                     {image.username}
                     </div>}
-            <MyImage image={image.imagedata} id={image._id}/>
+            <MyImage image={image.imagedata} id={image._id} pst={poststat}/>
                 <div className="card-body">
                     <div className="align-items-center">
                         <h5 className="card-title"><b>{image.title}</b></h5>
@@ -68,7 +68,13 @@ function MyImage(props) {
   }, []);
 
   return (
-          <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`)}}/>
+          if(pst){
+      <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`)}}/>
+}
+else{
+      <img src={imageData} alt="Image" onClick={()=>{navigate(`/posts/${props.id}`); window.location.reload();}}/>
+
+}
   );
 }
 
