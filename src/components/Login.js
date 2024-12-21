@@ -59,6 +59,8 @@ useEffect(() => {
                 <button type="submit" className="btn btn-success"><b>Login</b></button>
                 <Link className="btn btn-secondary mx-2"  to="/signup" role="button"><b>Create an account</b></Link>
             </form>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5368821711663037"
+     crossorigin="anonymous"></script>
         </div>
                 
 
